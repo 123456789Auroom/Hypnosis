@@ -5,96 +5,177 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ишвара даса — Гипнотерапевт. Тревога, бессонница, фобии</title>
 <meta name="description" content="Гипнотерапевт с 10+ летним опытом. Работа с тревогой, бессонницей, фобиями, детскими травмами. Онлайн, по всему миру.">
+<meta name="theme-color" content="#0d0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--gold:#c4a265;--gold-dim:#9a7d42;--text:#e0ddd5;--text-dim:#8a877f;--text-bright:#f5f3ef;--border:#2a2a35}
+:root{
+  --bg:#0d0d12;--bg2:#141419;--bg3:#1c1c24;
+  --gold:#c9a96e;--gold-dim:#a08550;--gold-glow:rgba(201,169,110,.08);
+  --text:#d4d0c8;--text-dim:#7a776f;--text-bright:#f0ede6;
+  --border:#252530;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:var(--gold);text-decoration:none;transition:color .2s}
 a:hover{color:var(--text-bright)}
-.container{max-width:720px;margin:0 auto;padding:0 1.5rem}
+img{max-width:100%;display:block}
+
+/* LAYOUT */
+.container{max-width:680px;margin:0 auto;padding:0 1.5rem}
+.container-wide{max-width:900px;margin:0 auto;padding:0 1.5rem}
+
+/* TYPOGRAPHY */
+h1,h2,h3{font-family:var(--serif);color:var(--text-bright);font-weight:600;line-height:1.2}
+h1{font-size:clamp(2rem,5.5vw,3.2rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:1rem}
+h3{font-size:clamp(1.15rem,2.5vw,1.35rem)}
+.subtitle{font-size:clamp(1rem,2.5vw,1.15rem);color:var(--text-dim);line-height:1.7}
+.dim{color:var(--text-dim)}
+.gold{color:var(--gold)}
+.italic{font-family:var(--serif);font-style:italic;font-size:1.15em}
+
+/* SEPARATOR */
+.sep{border:none;height:1px;background:var(--border);margin:0}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:.75rem 0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,13,18,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.65rem 0;transition:background .3s}
 nav .container{display:flex;justify-content:space-between;align-items:center}
-nav .logo{font-size:1.1rem;font-weight:600;color:var(--gold);letter-spacing:.05em}
-nav a.cta-nav{font-size:.85rem;padding:.4rem 1rem;border:1px solid var(--gold);border-radius:4px;transition:all .2s}
+nav .logo{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--gold);letter-spacing:.03em}
+nav .logo span{color:var(--text-dim);font-weight:400;font-size:.85rem;margin-left:.5rem}
+nav a.cta-nav{font-size:.8rem;padding:.4rem 1.1rem;border:1px solid var(--gold-dim);border-radius:3px;color:var(--gold);letter-spacing:.03em;transition:all .25s}
 nav a.cta-nav:hover{background:var(--gold);color:var(--bg)}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding-top:5rem;padding-bottom:3rem;text-align:center}
-.hero h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:700;color:var(--text-bright);line-height:1.25;margin-bottom:1.5rem}
-.hero h1 span{color:var(--gold)}
-.hero .subtitle{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--text-dim);max-width:560px;margin:0 auto 2.5rem}
-.btn{display:inline-block;padding:.85rem 2rem;border:2px solid var(--gold);color:var(--gold);font-size:1rem;font-weight:600;border-radius:4px;transition:all .25s;letter-spacing:.02em}
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:6rem;padding-bottom:4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);pointer-events:none;opacity:.6}
+.hero-inner{position:relative;z-index:1;text-align:center;max-width:640px;margin:0 auto}
+.hero h1{margin-bottom:1.8rem}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero .subtitle{max-width:520px;margin:0 auto 2.5rem;font-size:1.05rem}
+.hero .subtitle em{font-style:italic;font-family:var(--serif);color:var(--text)}
+
+/* BUTTONS */
+.btn{display:inline-block;padding:.8rem 2rem;border:1.5px solid var(--gold);color:var(--gold);font-size:.95rem;font-weight:500;border-radius:3px;transition:all .25s;letter-spacing:.02em;font-family:var(--sans);cursor:pointer}
 .btn:hover{background:var(--gold);color:var(--bg)}
-.btn-filled{background:var(--gold);color:var(--bg)}
-.btn-filled:hover{background:var(--gold-dim);color:var(--bg)}
+.btn-filled{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.btn-filled:hover{background:var(--gold-dim);border-color:var(--gold-dim)}
+.btn-sm{padding:.55rem 1.3rem;font-size:.85rem}
 
 /* SECTIONS */
 section{padding:5rem 0}
-section h2{font-size:clamp(1.4rem,3.5vw,2rem);color:var(--text-bright);margin-bottom:2rem;font-weight:600}
-.dim{color:var(--text-dim)}
-.gold{color:var(--gold)}
-hr.sep{border:none;border-top:1px solid var(--border);margin:0}
+@media(max-width:480px){section{padding:3.5rem 0}}
 
-/* SIGNS */
-.signs-grid{display:grid;gap:1.5rem}
-.sign-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.8rem;transition:border-color .2s}
-.sign-card:hover{border-color:var(--gold-dim)}
-.sign-card .num{display:inline-block;width:2rem;height:2rem;line-height:2rem;text-align:center;border-radius:50%;background:var(--gold);color:var(--bg);font-weight:700;font-size:.85rem;margin-bottom:.75rem}
-.sign-card h3{font-size:1.1rem;color:var(--text-bright);margin-bottom:.5rem;font-weight:600}
-.sign-card p{color:var(--text-dim);font-size:.95rem}
+/* === PAIN BLOCK === */
+.pain-block{padding:4rem 0}
+.pain-grid{display:grid;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.pain-item{background:var(--bg2);padding:1.8rem 2rem;display:flex;align-items:flex-start;gap:1.2rem}
+.pain-icon{font-size:1.4rem;flex-shrink:0;margin-top:.15rem;opacity:.6}
+.pain-text h3{font-family:var(--sans);font-size:1rem;font-weight:500;color:var(--text-bright);margin-bottom:.35rem}
+.pain-text p{color:var(--text-dim);font-size:.9rem;line-height:1.6}
 
-/* HOW */
-.steps{display:grid;gap:2rem;counter-reset:step}
-.step{padding-left:3.5rem;position:relative}
-.step::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:2.5rem;height:2.5rem;border-radius:50%;border:2px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem}
-.step h3{font-size:1.1rem;color:var(--text-bright);margin-bottom:.4rem}
-.step p{color:var(--text-dim);font-size:.95rem}
+/* === SOCIAL PROOF === */
+.proof-strip{display:flex;justify-content:center;gap:3rem;padding:3rem 0;flex-wrap:wrap}
+.proof-item{text-align:center}
+.proof-num{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--gold);line-height:1;display:block}
+.proof-label{font-size:.8rem;color:var(--text-dim);margin-top:.4rem;display:block;letter-spacing:.02em}
 
-/* SERVICES */
-.services-grid{display:grid;gap:1.5rem}
-.service-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2rem;text-align:center}
-.service-card h3{color:var(--text-bright);font-size:1.15rem;margin-bottom:.5rem}
-.service-card .price{color:var(--gold);font-size:1.5rem;font-weight:700;margin-bottom:.75rem}
-.service-card .desc{color:var(--text-dim);font-size:.9rem;line-height:1.6}
+/* === METHOD === */
+.method-section{background:var(--bg2);padding:5rem 0}
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+@media(max-width:640px){.method-grid{grid-template-columns:1fr}}
+.method-card{padding:2rem;border:1px solid var(--border);border-radius:6px;transition:border-color .25s}
+.method-card:hover{border-color:var(--gold-dim)}
+.method-card .method-num{font-family:var(--serif);font-size:2.5rem;font-weight:700;color:var(--gold);opacity:.25;display:block;margin-bottom:.8rem;line-height:1}
+.method-card h3{margin-bottom:.6rem}
+.method-card p{color:var(--text-dim);font-size:.9rem;line-height:1.65}
 
-/* FAQ */
-.faq-item{border-bottom:1px solid var(--border);padding:1.5rem 0}
+/* === WHAT I WORK WITH === */
+.work-list{list-style:none;padding:0;counter-reset:work}
+.work-list li{padding:.9rem 0;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:1rem;counter-increment:work}
+.work-list li::before{content:counter(work,decimal-leading-zero);font-family:var(--serif);font-size:1.1rem;color:var(--gold);opacity:.5;flex-shrink:0;width:1.8rem}
+.work-list li span{color:var(--text);font-size:1rem}
+.work-list li .work-note{color:var(--text-dim);font-size:.85rem;margin-left:auto;flex-shrink:0}
+@media(max-width:480px){.work-list li{flex-wrap:wrap}.work-list li .work-note{margin-left:2.8rem;margin-top:.2rem;width:100%}}
+
+/* === PROCESS === */
+.process-steps{display:grid;gap:0;position:relative}
+.process-step{display:grid;grid-template-columns:3.5rem 1fr;gap:1.5rem;padding:2rem 0;border-bottom:1px solid var(--border);align-items:start}
+.process-step:last-child{border-bottom:none}
+.process-marker{display:flex;flex-direction:column;align-items:center}
+.process-dot{width:2.5rem;height:2.5rem;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;color:var(--gold);font-size:1rem;flex-shrink:0}
+.process-line{width:1px;flex:1;background:var(--border);margin-top:.5rem}
+.process-step:last-child .process-line{display:none}
+.process-content h3{font-family:var(--sans);font-weight:500;font-size:1rem;color:var(--text-bright);margin-bottom:.3rem}
+.process-content p{color:var(--text-dim);font-size:.9rem;line-height:1.6}
+.process-content .process-detail{color:var(--gold);font-size:.85rem;margin-top:.4rem}
+
+/* === PRICING === */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:640px){.pricing-grid{grid-template-columns:1fr}}
+.price-card{border:1px solid var(--border);border-radius:6px;padding:2.2rem;text-align:center;transition:border-color .25s;position:relative}
+.price-card:hover{border-color:var(--gold-dim)}
+.price-card.featured{border-color:var(--gold-dim);background:var(--gold-glow)}
+.price-card.featured::before{content:'Популярно';position:absolute;top:-.7rem;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:.7rem;font-weight:600;padding:.2rem .8rem;border-radius:2rem;letter-spacing:.04em;text-transform:uppercase}
+.price-card h3{font-family:var(--sans);font-weight:500;font-size:1rem;margin-bottom:.5rem}
+.price-card .price{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:1rem}
+.price-card .price span{font-size:.85rem;font-weight:400;color:var(--text-dim)}
+.price-card ul{list-style:none;padding:0;text-align:left;margin-bottom:1.5rem}
+.price-card ul li{padding:.35rem 0;font-size:.9rem;color:var(--text-dim);padding-left:1.2rem;position:relative}
+.price-card ul li::before{content:'·';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:1.2rem;line-height:1}
+
+/* === ABOUT === */
+.about-section{background:var(--bg2);padding:5rem 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+@media(max-width:640px){.about-grid{grid-template-columns:1fr}}
+.about-text p{margin-bottom:1.2rem;font-size:1rem;line-height:1.8}
+.about-text p:first-child::first-letter{font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--gold);float:left;line-height:1;margin-right:.5rem;margin-top:.1rem}
+.about-detail{border-left:2px solid var(--gold-dim);padding-left:1.5rem}
+.about-detail p{color:var(--text-dim);font-size:.9rem;line-height:1.7;margin-bottom:1rem}
+.about-detail p:last-child{margin-bottom:0}
+
+/* === GUARANTEE === */
+.guarantee-box{border:1px solid var(--gold-dim);border-radius:6px;padding:2.5rem;background:var(--gold-glow);text-align:center}
+.guarantee-box h3{font-family:var(--serif);font-size:1.4rem;margin-bottom:.8rem;color:var(--text-bright)}
+.guarantee-box p{color:var(--text-dim);font-size:.95rem;max-width:500px;margin:0 auto;line-height:1.7}
+
+/* === FAQ === */
+.faq-item{border-bottom:1px solid var(--border);padding:1.4rem 0}
 .faq-item:first-child{border-top:1px solid var(--border)}
-.faq-q{font-size:1.05rem;color:var(--text-bright);font-weight:600;margin-bottom:.6rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-.faq-q::after{content:'+';color:var(--gold);font-size:1.3rem;flex-shrink:0;margin-left:1rem}
-.faq-a{color:var(--text-dim);font-size:.95rem;display:none}
+.faq-q{font-size:1rem;color:var(--text-bright);font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none}
+.faq-q::after{content:'+';color:var(--gold);font-size:1.3rem;flex-shrink:0;transition:transform .2s}
+.faq-a{color:var(--text-dim);font-size:.9rem;line-height:1.7;display:none;padding-top:.8rem;max-width:90%}
 .faq-item.open .faq-a{display:block}
-.faq-item.open .faq-q::after{content:'−'}
+.faq-item.open .faq-q::after{content:'−';transform:rotate(0)}
 
-/* ABOUT */
-.about-text{font-size:1.05rem;line-height:1.8;color:var(--text)}
-
-/* FINAL CTA */
-.final-cta{text-align:center;padding:5rem 0;background:var(--bg2)}
+/* === FINAL CTA === */
+.final-cta{padding:5rem 0;background:var(--bg2);text-align:center;position:relative}
+.final-cta::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);pointer-events:none;opacity:.5}
+.final-cta-inner{position:relative;z-index:1}
 .final-cta h2{margin-bottom:1rem}
-.final-cta p{color:var(--text-dim);max-width:500px;margin:0 auto 2rem;font-size:1.05rem}
+.final-cta p{color:var(--text-dim);max-width:480px;margin:0 auto 2rem;font-size:1rem;line-height:1.7}
+.final-cta .btn{font-size:1.05rem;padding:.9rem 2.5rem}
+.telegram-link{display:inline-flex;align-items:center;gap:.5rem}
 
 /* FOOTER */
-footer{padding:2rem 0;text-align:center;color:var(--text-dim);font-size:.8rem;border-top:1px solid var(--border)}
-footer p{margin-bottom:.3rem}
+footer{padding:2.5rem 0;text-align:center;border-top:1px solid var(--border)}
+footer p{color:var(--text-dim);font-size:.8rem;margin-bottom:.25rem}
+footer a{color:var(--gold-dim)}
 
-/* WHAT */
-.what-list{list-style:none;padding:0}
-.what-list li{padding:.6rem 0;padding-left:1.5rem;position:relative;color:var(--text);font-size:1rem}
-.what-list li::before{content:'—';position:absolute;left:0;color:var(--gold)}
-.what-list-not li::before{content:'';position:absolute;left:0;width:1rem;height:1rem;background:var(--bg3);border-radius:50%;top:.7rem}
+/* SCROLL ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.fade-in{opacity:1;transform:none;transition:none}}
 
-/* RESPONSIVE */
-@media(max-width:480px){
-  .container{padding:0 1rem}
-  section{padding:3.5rem 0}
-  .sign-card,.service-card{padding:1.3rem}
-  .step{padding-left:2.8rem}
-  .btn{padding:.7rem 1.5rem}
-}
+/* WHATSAPP BUTTON (FLOATING) */
+.fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;width:3.2rem;height:3.2rem;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.4);transition:transform .2s,box-shadow .2s}
+.fab:hover{transform:scale(1.08);box-shadow:0 6px 25px rgba(0,0,0,.5)}
+.fab svg{width:1.3rem;height:1.3rem;fill:var(--bg)}
+@media(max-width:480px){.fab{bottom:1rem;right:1rem;width:2.8rem;height:2.8rem}}
 </style>
 </head>
 <body>
@@ -102,74 +183,112 @@ footer p{margin-bottom:.3rem}
 <!-- NAV -->
 <nav>
 <div class="container">
-  <span class="logo">Ишвара даса</span>
+  <div class="logo">Ишвара даса<span>гипнотерапевт</span></div>
   <a href="#contact" class="cta-nav">Записаться</a>
 </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="top">
+<section class="hero">
 <div class="container">
-  <h1>Голова <span>не выключается</span>.<br>Ночью — тем более.</h1>
-  <p class="subtitle">Вы уже пробовали считать овец, дыхательные техники, валерьянку. Не работает. Потому что проблема не в том, что вы не расслабляетесь. Проблема в том, что ваш мозг не знает, как это делается.</p>
-  <a href="#contact" class="btn">Бесплатная 15-минутная встреча</a>
-</div>
-</section>
-
-<hr class="sep">
-
-<!-- SIGNS -->
-<section id="signs">
-<div class="container">
-  <h2>Пять признаков, что вам нужна работа с сознанием</h2>
-  <div class="signs-grid">
-    <div class="sign-card">
-      <div class="num">1</div>
-      <h3>Голова не выключается</h3>
-      <p>Ночью. Днём. В выходные. Мысли крутятся, как белка в колесе. Вы перебираете сценарии, вспоминаете разговоры, боитесь будущего. Просыпаетесь в 3 утра — и снова начинается. Если это происходит чаще 3 раз в неделю — это не «просто стресс».</p>
-    </div>
-    <div class="sign-card">
-      <div class="num">2</div>
-      <h3>Вы боитесь, но не понимаете чего</h3>
-      <p>Страх без причины. Тревога без объекта. Ощущение, что вот-вот случится что-то плохое — но что именно, непонятно. Вы проверяете дверь по десять раз. Тревога без причины — это сигнал. Причина есть, просто она не в сознании.</p>
-    </div>
-    <div class="sign-card">
-      <div class="num">3</div>
-      <h3>Не можете перестать есть / смотреть / скроллить</h3>
-      <p>Компульсия. Зависимость. Тяга. Не голод — а пустота, которую нужно чем-то заполнить. Телефон не выпускаете из рук. Это не слабость воли. Это механизм, который можно перезапустить.</p>
-    </div>
-    <div class="sign-card">
-      <div class="num">4</div>
-      <h3>Из детства тянутся «хвосты»</h3>
-      <p>Родители, которые не дали то, что нужно. Обиды, которые не отпускают. Шаблоны поведения, которые вы повторяете, хотя знаете, что они вредят. Детские травмы не проходят «сами». Они живут в теле и в привычках.</p>
-    </div>
-    <div class="sign-card">
-      <div class="num">5</div>
-      <h3>Вы «застряли»</h3>
-      <p>Знаете, что нужно делать. Знаете, как. Но не делаете. Появляются оправдания, отговорки, откладывания. Это не лень. Это барьер. И его можно убрать.</p>
-    </div>
+  <div class="hero-inner fade-in">
+    <h1>Голова <em>не выключается</em>.<br>Ночью — тем более.</h1>
+    <p class="subtitle">Вы уже пробовали считать овец, дыхательные техники, валерьянку. Не работает. Потому что проблема не в том, что вы не расслабляетесь. <em>Проблема в том, что ваш мозг не знает, как это делается.</em></p>
+    <a href="#contact" class="btn btn-filled">Бесплатная 15-минутная встреча</a>
   </div>
 </div>
 </section>
 
 <hr class="sep">
 
-<!-- HOW IT WORKS -->
-<section id="how">
+<!-- SOCIAL PROOF -->
+<div class="proof-strip fade-in">
+  <div class="proof-item">
+    <span class="proof-num">10+</span>
+    <span class="proof-label">лет практики</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-num">1</span>
+    <span class="proof-label">сеанс — фобии, травмы</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-num">100%</span>
+    <span class="proof-label">онлайн, весь мир</span>
+  </div>
+</div>
+
+<hr class="sep">
+
+<!-- PAIN BLOCK -->
+<section class="pain-block">
 <div class="container">
-  <h2>Как это работает</h2>
-  <div class="steps">
-    <div class="step">
-      <h3>Бесплатная встреча — 15 минут</h3>
-      <p>Знакомство. Вы рассказываете, что вас мучает. Я задаю вопросы. Никаких обязательств. Если я вижу, что могу помочь — мы договариваемся о сессии. Если нет — честно скажу.</p>
+  <h2 class="fade-in">Узнаёте себя?</h2>
+  <p class="subtitle fade-in" style="margin-bottom:2rem">Это не «просто стресс». Это сигналы, которые нельзя игнорировать.</p>
+  <div class="pain-grid fade-in">
+    <div class="pain-item">
+      <div class="pain-icon">◯</div>
+      <div class="pain-text">
+        <h3>Голова не выключается</h3>
+        <p>Ночью. Днём. В выходные. Мысли крутятся, как белка в колесе. Просыпаетесь в 3 утра — и снова начинается. Если это происходит чаще 3 раз в неделю — это не «просто стресс».</p>
+      </div>
     </div>
-    <div class="step">
-      <h3>Основная сессия — 1 час 30 минут</h3>
-      <p>Работа с сознанием через трансовые состояния. Классический гипноз, НЛП, тантрические техники. Вы в сознании, всё слышите, всё помните. Контроль сохраняется. Глубина — нет.</p>
+    <div class="pain-item">
+      <div class="pain-icon">◯</div>
+      <div class="pain-text">
+        <h3>Боитесь, но не понимаете чего</h3>
+        <p>Тревога без объекта. Ощущение, что вот-вот случится что-то плохое — но что именно, непонятно. Тревога без причины — это сигнал. Причина есть, просто она не в сознании.</p>
+      </div>
     </div>
-    <div class="step">
-      <h3>Результат и поддержка</h3>
-      <p>После сессии — аналитический разбор. Если проблема вернулась — бесплатный повторный анализ. У каждого свой лимит «сопротивления». Кому-то хватает одной встречи, кому-то нужно больше.</p>
+    <div class="pain-item">
+      <div class="pain-icon">◯</div>
+      <div class="pain-text">
+        <h3>Не можете перестать есть / смотреть / скроллить</h3>
+        <p>Не голод — а пустота, которую нужно чем-то заполнить. Телефон не выпускаете из рук. Это не слабость воли. Это механизм, который можно перезапустить.</p>
+      </div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">◯</div>
+      <div class="pain-text">
+        <h3>Из детства тянутся «хвосты»</h3>
+        <p>Обиды, которые не отпускают. Шаблоны поведения, которые вы повторяете, хотя знаете, что они вредят. Детские травмы не проходят «сами».</p>
+      </div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-icon">◯</div>
+      <div class="pain-text">
+        <h3>Знаете, что делать — но не делаете</h3>
+        <p>Появляются оправдания, отговорки, откладывания. Это не лень. Это барьер. И его можно убрать.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- METHOD -->
+<section class="method-section">
+<div class="container-wide">
+  <h2 class="fade-in" style="text-align:center">Метод работы</h2>
+  <p class="subtitle fade-in" style="text-align:center;max-width:540px;margin:0 auto 2.5rem">Не разговоры. Не анализ по кругу. Прямое воздействие на уровень, где проблема живёт.</p>
+  <div class="method-grid fade-in">
+    <div class="method-card">
+      <div class="method-num">01</div>
+      <h3>Классический гипноз</h3>
+      <p>Прямое обращение к подсознанию. Конкретные指令 для изменения привычек, реакций, шаблонов. Без «магии» — рабочий инструмент с доказанной эффективностью.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-num">02</div>
+      <h3>Эриксоновский гипноз</h3>
+      <p>Мягкое погружение через метафоры и истории. Подходит тем, кто боится «потерять контроль». Вы в сознании. Вы всё слышите. Вы всё помните.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-num">03</div>
+      <h3>НЛП-мастерство</h3>
+      <p>Работа с языком, визуальными и кинестетическими каналами. Перепрограммирование реакций на триггеры. Быстрый результат — часто за 1–3 сессии.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-num">04</div>
+      <h3>Мессмеризм и тантрические техники</h3>
+      <p>Глубокие трансовые состояния. Работа с телом и энергией. Для тех, кому не хватает «обычной» терапии. Отдельная программа — 10–15 встреч.</p>
     </div>
   </div>
 </div>
@@ -178,60 +297,127 @@ footer p{margin-bottom:.3rem}
 <hr class="sep">
 
 <!-- WHAT I WORK WITH -->
-<section id="what">
+<section>
 <div class="container">
-  <h2>С чем я работаю</h2>
-  <ul class="what-list">
-    <li>Тревога и навязчивые мысли</li>
-    <li>Бессонница — когда голова не выключается</li>
-    <li>Фобии — страх полётов, высоты, замкнутого пространства</li>
-    <li>Детские травмы — за один сеанс</li>
-    <li>СДВГ-симптомы — не могу сосредоточиться</li>
-    <li>Лишний вес и пищевая зависимость</li>
-    <li>Компульсии — телефон, еда, прокрастинация</li>
-    <li>Бизнес-коучинг — целеполагание через устранение барьеров</li>
+  <h2 class="fade-in">С чем работаю</h2>
+  <ul class="work-list fade-in">
+    <li><span>Тревога и навязчивые мысли</span><span class="work-note">1–3 сессии</span></li>
+    <li><span>Бессонница — когда голова не выключается</span><span class="work-note">1–3 сессии</span></li>
+    <li><span>Фобии — страх полётов, высоты, замкнутого пространства</span><span class="work-note">1–2 сессии</span></li>
+    <li><span>Детские травмы</span><span class="work-note">за 1 сеанс</span></li>
+    <li><span>СДВГ-симптомы — не могу сосредоточиться</span><span class="work-note">2–4 сессии</span></li>
+    <li><span>Лишний вес и пищевая зависимость</span><span class="work-note">10–15 встреч</span></li>
+    <li><span>Компульсии — телефон, еда, прокрастинация</span><span class="work-note">2–4 сессии</span></li>
+    <li><span>Бизнес-коучинг — целеполагание через устранение барьеров</span><span class="work-note">3–5 сессий</span></li>
   </ul>
-  <p class="dim" style="margin-top:1.5rem">Не работаю с клиническими диагнозами (шизофрения, ДРЛ), трейдерами и стрессовыми профессиями. Не работаю в рассрочку.</p>
 </div>
 </section>
 
 <hr class="sep">
 
-<!-- SERVICES -->
-<section id="services">
+<!-- PROCESS -->
+<section>
 <div class="container">
-  <h2>Услуги и цены</h2>
-  <div class="services-grid">
-    <div class="service-card">
-      <h3>Трансовая сессия</h3>
-      <div class="price">от 30 000 ₽</div>
-      <div class="desc">Предварительная встреча 15 мин (бесплатно)<br>Основная сессия 1 час 30 минут<br>Аналитический разбор после практики</div>
+  <h2 class="fade-in">Как проходит работа</h2>
+  <div class="process-steps fade-in">
+    <div class="process-step">
+      <div class="process-marker"><div class="process-dot">1</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>Вы пишете</h3>
+        <p>Коротко описываете проблему. Никаких анкет, никаких тестов. Живой разговор.</p>
+      </div>
     </div>
-    <div class="service-card">
-      <h3>Программа глубокого транса</h3>
-      <div class="price">от 80 000 ₽</div>
-      <div class="desc">10–15 встреч<br>Первые — по 1:30, последующие — по 45 мин<br>Для работы с весом, обучением, якорением</div>
+    <div class="process-step">
+      <div class="process-marker"><div class="process-dot">2</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>Бесплатная встреча — 15 минут</h3>
+        <p>Знакомство. Я задаю вопросы. Вы решаете, хотите ли работать. Если я вижу, что могу помочь — договариваемся. Если нет — честно скажу.</p>
+      </div>
     </div>
-    <div class="service-card">
-      <h3>Индивидуальная аудио-медитация</h3>
-      <div class="price">от 8 000 ₽</div>
-      <div class="desc">Запись под заказ<br>С бинауральным ритмом расслабления<br>Поддержка между сессиями</div>
+    <div class="process-step">
+      <div class="process-marker"><div class="process-dot">3</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>Основная сессия — 1 час 30 минут</h3>
+        <p>Работа с сознанием через трансовые состояния. Вы в сознании, всё слышите, всё помните. Контроль сохраняется.</p>
+        <div class="process-detail">Онлайн. Из любого места. Тихое помещение + стабильный интернет.</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-marker"><div class="process-dot">4</div><div class="process-line"></div></div>
+      <div class="process-content">
+        <h3>Результат и поддержка</h3>
+        <p>После сессии — аналитический разбор. Если проблема вернулась — бесплатный повторный анализ. У каждого свой лимит «сопротивления».</p>
+      </div>
     </div>
   </div>
-  <p class="dim" style="margin-top:1.5rem;font-size:.9rem">Гарантия: если проблема вернулась — бесплатный аналитический сеанс разбора.</p>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- PRICING -->
+<section>
+<div class="container-wide">
+  <h2 class="fade-in" style="text-align:center">Услуги</h2>
+  <p class="subtitle fade-in" style="text-align:center;margin-bottom:2.5rem">Прозрачно. Без скрытых платежей.</p>
+  <div class="pricing-grid fade-in">
+    <div class="price-card featured">
+      <h3>Трансовая сессия</h3>
+      <div class="price">30 000 ₽<span> / сессия</span></div>
+      <ul>
+        <li>Предварительная встреча 15 мин — бесплатно</li>
+        <li>Основная сессия — 1 час 30 минут</li>
+        <li>Аналитический разбор после практики</li>
+        <li>Тревога, бессонница, фобии, травмы, СДВГ</li>
+      </ul>
+      <a href="#contact" class="btn btn-filled btn-sm">Записаться</a>
+    </div>
+    <div class="price-card">
+      <h3>Программа глубокого транса</h3>
+      <div class="price">80 000 ₽<span> / программа</span></div>
+      <ul>
+        <li>10–15 встреч</li>
+        <li>Первые — по 1:30, последующие — по 45 мин</li>
+        <li>Лишний вес, ускорение обучения, якорение</li>
+        <li>Индивидуальный план работы</li>
+      </ul>
+      <a href="#contact" class="btn btn-sm">Записаться</a>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:1.5rem">
+    <a href="#contact" class="dim" style="font-size:.9rem">Индивидуальная аудио-медитация — от 8 000 ₽ →</a>
+  </div>
+</div>
+</section>
+
+<!-- GUARANTEE -->
+<section style="padding:3rem 0">
+<div class="container">
+  <div class="guarantee-box fade-in">
+    <h3>Гарантия результата</h3>
+    <p>Если проблема вернулась — бесплатный аналитический сеанс разбора. Анализ: почему вернулось, что не учтено, сколько сессий не хватило. Я не обещаю чудо. Я обещаю работу — глубокую и честную.</p>
+  </div>
 </div>
 </section>
 
 <hr class="sep">
 
 <!-- ABOUT -->
-<section id="about">
-<div class="container">
-  <h2>Кто я</h2>
-  <div class="about-text">
-    <p>10+ лет практики. НЛП-мастер. Классический и Эриксоновский гипноз. Тантрические техники. Мессмеризм.</p>
-    <p style="margin-top:1rem">Я не обещаю чудо. Я обещаю работу — глубокую, честную, иногда неудобную. Потому что то, что вас мучает, не решается разговорами. Нужно лезть внутрь.</p>
-    <p style="margin-top:1rem">Я начал с психологических консультаций и джйотиш. Заметил, что во время длительных сессий время пролетает как 5 минут — классический признак трансового состояния. Это был талант мессмеризма. Начал глубоко изучать тему. Обнаружил, что способен вводить людей в трансовые состояния — от осознанных до глубоких.</p>
+<section class="about-section">
+<div class="container-wide">
+  <h2 class="fade-in">Кто я</h2>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>Более 10 лет практики. Начал с психологических консультаций и джйотиш. Во время длительных сессий заметил, что 2–4 часа пролетают как 5 минут — классический признак трансового состояния. Это был талант мессмеризма.</p>
+      <p>Начал глубоко изучать тему. Обнаружил способность вводить людей в трансовые состояния — от осознанных до глубоких. Использую классические методы, дхьяну и тантрические техники.</p>
+      <p>Не обещаю чудо. Обещаю работу — глубокую, честную, иногда неудобную. Потому что то, что вас мучает, не решается разговорами. Нужно лезть внутрь.</p>
+    </div>
+    <div class="about-detail">
+      <p><strong>Специализация:</strong> тревога, бессонница, фобии, детские травмы, СДВГ, лишний вес, бизнес-коучинг.</p>
+      <p><strong>Методы:</strong> классический гипноз, Эриксоновский гипноз, НЛП, мессмеризм, тантрические техники.</p>
+      <p><strong>Формат:</strong> только онлайн, по всему миру, русскоязычная аудитория.</p>
+      <p><strong>Почему дорого:</strong> это не 50-минутная релаксация. Это 1:30 глубокой работы. Поверхностные сессии дают поверхностный результат.</p>
+    </div>
   </div>
 </div>
 </section>
@@ -239,10 +425,10 @@ footer p{margin-bottom:.3rem}
 <hr class="sep">
 
 <!-- FAQ -->
-<section id="faq">
+<section>
 <div class="container">
-  <h2>Частые вопросы</h2>
-  <div class="faq-list">
+  <h2 class="fade-in">Частые вопросы</h2>
+  <div class="fade-in">
     <div class="faq-item">
       <div class="faq-q">Это не опасно?</div>
       <div class="faq-a">Не медицинский гипноз. Работа с сознанием, не с телом. Вы в сознании, всё слышите, всё помните. Контроль сохраняется. Можете открыть глаза в любой момент.</div>
@@ -256,16 +442,12 @@ footer p{margin-bottom:.3rem}
       <div class="faq-a">Если проблема вернулась — бесплатный аналитический сеанс разбора. Анализ: почему вернулось, что не учтено, сколько сессий не хватило. У каждого свой лимит «сопротивления».</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Это дорого. Почему не 5000₽ как везде?</div>
+      <div class="faq-q">Это дорого. Почему не 5 000 ₽ как везде?</div>
       <div class="faq-a">Потому что это не 50-минутная релаксация. Это 1:30 глубокой работы. Поверхностные сессии дают поверхностный результат. Если вы уже пробовали «обычную» терапию и не получили результата — проблема не в вас. Проблема в глубине работы.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Вы работаете онлайн? Это так же эффективно?</div>
-      <div class="faq-a">Да, только онлайн. По всему миру. Трансовые состояния не требуют физического присутствия. Важно: свободное окно для записи, тихое место, стабильный интернет.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">У вас есть сертификаты?</div>
-      <div class="faq-a">Есть. НЛП-мастер, классический гипноз, Эриксоновский гипноз. Но сертификаты — не то, что решает вашу проблему. Решает результат. Если вам важнее корочки — я не ваш специалист.</div>
+      <div class="faq-q">Работаете онлайн? Это так же эффективно?</div>
+      <div class="faq-a">Да, только онлайн. По всему миру. Трансовые состояния не требуют физического присутствия. Важно: тихое место, стабильный интернет.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">Сколько сессий нужно?</div>
@@ -278,9 +460,15 @@ footer p{margin-bottom:.3rem}
 <!-- FINAL CTA -->
 <section class="final-cta" id="contact">
 <div class="container">
-  <h2>Отметили хотя бы 2 признака?</h2>
-  <p>Значит у вас есть запрос, с которым можно работать. Бесплатная 15-минутная встреча — знакомство, выяснение, без обязательств.</p>
-  <a href="https://t.me/DukeAvadhuta" class="btn btn-filled" style="font-size:1.1rem">Написать в Telegram: @IshvaraDasa</a>
+  <div class="final-cta-inner fade-in">
+    <h2>Отметили хотя бы 2 признака?</h2>
+    <p>Значит у вас есть запрос, с которым можно работать. Бесплатная 15-минутная встреча — знакомство, выяснение, без обязательств.</p>
+    <a href="https://t.me/Ishvaradass" class="btn btn-filled telegram-link">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Написать в Telegram
+    </a>
+    <p class="dim" style="font-size:.85rem;margin-top:1rem">@Ishvaradass</p>
+  </div>
 </div>
 </section>
 
@@ -288,15 +476,34 @@ footer p{margin-bottom:.3rem}
 <footer>
 <div class="container">
   <p>Ишвара даса — гипнотерапевт. 10+ лет практики.</p>
-  <p>Не является медицинской деятельностью. Не заменяет консультацию врача.</p>
-  <p style="margin-top:.5rem">&copy; 2026 Ишвара даса. Все права защищены.</p>
+  <p style="margin-top:.5rem">&copy; 2026. Все права защищены.</p>
 </div>
 </footer>
 
+<!-- FLOATING TELEGRAM BUTTON -->
+<a href="https://t.me/Ishvaradass" class="fab" aria-label="Написать в Telegram">
+  <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+</a>
+
+<!-- SCRIPTS -->
 <script>
+// FAQ accordion
 document.querySelectorAll('.faq-q').forEach(q=>{
-  q.addEventListener('click',()=>{
-    q.parentElement.classList.toggle('open');
+  q.addEventListener('click',()=>q.parentElement.classList.toggle('open'));
+});
+
+// Scroll animations
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
 </script>
