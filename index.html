@@ -2,28 +2,30 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ишвара даса — Гипнотерапевт. Тревога, бессонница, фобии</title>
 <meta name="description" content="Гипнотерапевт с 10+ летним опытом. Работа с тревогой, бессонницей, фобиями, детскими травмами. Онлайн, по всему миру.">
-<meta name="theme-color" content="#0d0d12">
+<meta name="theme-color" content="#0a0a10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0d0d12;--bg2:#141419;--bg3:#1c1c24;
-  --gold:#c9a96e;--gold-dim:#a08550;--gold-glow:rgba(201,169,110,.08);
+  --bg:#0a0a10;--bg2:#0f0f17;--bg3:#16161f;
+  --gold:#c9a96e;--gold-dim:#a08550;--gold-glow:rgba(201,169,110,.06);
   --text:#d4d0c8;--text-dim:#7a776f;--text-bright:#f0ede6;
-  --border:#252530;
-  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
-  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --border:#1e1e2a;--border-gold:rgba(201,169,110,.2);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
 }
 html{scroll-behavior:smooth;font-size:16px}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:var(--gold);text-decoration:none;transition:color .2s}
 a:hover{color:var(--text-bright)}
-img{max-width:100%;display:block}
+
+/* === 3D PERSPECTIVE ROOT === */
+.perspective-root{perspective:1200px;perspective-origin:50% 50%}
 
 /* LAYOUT */
 .container{max-width:680px;margin:0 auto;padding:0 1.5rem}
@@ -34,91 +36,102 @@ h1,h2,h3{font-family:var(--serif);color:var(--text-bright);font-weight:600;line-
 h1{font-size:clamp(2rem,5.5vw,3.2rem);letter-spacing:-.01em}
 h2{font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:1rem}
 h3{font-size:clamp(1.15rem,2.5vw,1.35rem)}
-.subtitle{font-size:clamp(1rem,2.5vw,1.15rem);color:var(--text-dim);line-height:1.7}
+.subtitle{font-size:clamp(1rem,2.5vw,1.1rem);color:var(--text-dim);line-height:1.7}
 .dim{color:var(--text-dim)}
 .gold{color:var(--gold)}
-.italic{font-family:var(--serif);font-style:italic;font-size:1.15em}
 
 /* SEPARATOR */
 .sep{border:none;height:1px;background:var(--border);margin:0}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,13,18,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.65rem 0;transition:background .3s}
+/* === NAV === */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,16,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.6rem 0;transition:background .3s}
 nav .container{display:flex;justify-content:space-between;align-items:center}
-nav .logo{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--gold);letter-spacing:.03em}
-nav .logo span{color:var(--text-dim);font-weight:400;font-size:.85rem;margin-left:.5rem}
+nav .logo{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--gold);letter-spacing:.03em}
+nav .logo span{color:var(--text-dim);font-weight:400;font-size:.8rem;margin-left:.5rem}
 nav a.cta-nav{font-size:.8rem;padding:.4rem 1.1rem;border:1px solid var(--gold-dim);border-radius:3px;color:var(--gold);letter-spacing:.03em;transition:all .25s}
 nav a.cta-nav:hover{background:var(--gold);color:var(--bg)}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding-top:6rem;padding-bottom:4rem;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);pointer-events:none;opacity:.6}
-.hero-inner{position:relative;z-index:1;text-align:center;max-width:640px;margin:0 auto}
-.hero h1{margin-bottom:1.8rem}
+/* === 3D FLOATING PARTICLES === */
+.particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.particle{position:absolute;border-radius:50%;background:var(--gold);opacity:0;animation:float linear infinite}
+@keyframes float{
+  0%{transform:translateY(100vh) translateZ(0) scale(0);opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{transform:translateY(-10vh) translateZ(200px) scale(1);opacity:0}
+}
+
+/* === HERO — 3D DEPTH LAYERS === */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:5rem}
+.hero-layers{position:absolute;inset:0;pointer-events:none}
+.hero-layer{position:absolute;inset:0;transition:transform .1s ease-out}
+.hero-layer--back{transform:translateZ(-300px) scale(1.25)}
+.hero-layer--mid{transform:translateZ(-150px) scale(1.12)}
+.hero-layer--front{transform:translateZ(0)}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15}
+.hero-orb--1{width:500px;height:500px;background:var(--gold);top:10%;left:60%}
+.hero-orb--2{width:350px;height:350px;background:#3a2860;bottom:10%;left:20%}
+.hero-orb--3{width:200px;height:200px;background:var(--gold);top:40%;left:30%;opacity:.08}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:80px 80px;opacity:.15;transform:perspective(500px) rotateX(60deg);transform-origin:center top}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:640px;margin:0 auto}
+.hero h1{margin-bottom:1.5rem}
 .hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
-.hero .subtitle{max-width:520px;margin:0 auto 2.5rem;font-size:1.05rem}
+.hero .subtitle{max-width:520px;margin:0 auto 2rem;font-size:1.05rem}
 .hero .subtitle em{font-style:italic;font-family:var(--serif);color:var(--text)}
 
 /* BUTTONS */
-.btn{display:inline-block;padding:.8rem 2rem;border:1.5px solid var(--gold);color:var(--gold);font-size:.95rem;font-weight:500;border-radius:3px;transition:all .25s;letter-spacing:.02em;font-family:var(--sans);cursor:pointer}
+.btn{display:inline-block;padding:.8rem 2rem;border:1.5px solid var(--gold);color:var(--gold);font-size:.95rem;font-weight:500;border-radius:3px;transition:all .25s;letter-spacing:.02em;font-family:var(--sans);cursor:pointer;position:relative;overflow:hidden}
 .btn:hover{background:var(--gold);color:var(--bg)}
 .btn-filled{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 .btn-filled:hover{background:var(--gold-dim);border-color:var(--gold-dim)}
 .btn-sm{padding:.55rem 1.3rem;font-size:.85rem}
+.btn-glow{box-shadow:0 0 30px rgba(201,169,110,.2)}
 
 /* SECTIONS */
-section{padding:5rem 0}
+section{padding:5rem 0;position:relative}
 @media(max-width:480px){section{padding:3.5rem 0}}
 
-/* === PAIN BLOCK === */
-.pain-block{padding:4rem 0}
-.pain-grid{display:grid;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden}
-.pain-item{background:var(--bg2);padding:1.8rem 2rem;display:flex;align-items:flex-start;gap:1.2rem}
-.pain-icon{font-size:1.4rem;flex-shrink:0;margin-top:.15rem;opacity:.6}
-.pain-text h3{font-family:var(--sans);font-size:1rem;font-weight:500;color:var(--text-bright);margin-bottom:.35rem}
-.pain-text p{color:var(--text-dim);font-size:.9rem;line-height:1.6}
+/* === 3D CARD EFFECT === */
+.card-3d{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2rem;transition:transform .3s,box-shadow .3s,border-color .3s;transform-style:preserve-3d;will-change:transform}
+.card-3d:hover{transform:translateZ(20px) rotateX(2deg) rotateY(-2deg);border-color:var(--border-gold);box-shadow:0 20px 60px rgba(0,0,0,.4)}
 
-/* === SOCIAL PROOF === */
-.proof-strip{display:flex;justify-content:center;gap:3rem;padding:3rem 0;flex-wrap:wrap}
-.proof-item{text-align:center}
-.proof-num{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--gold);line-height:1;display:block}
-.proof-label{font-size:.8rem;color:var(--text-dim);margin-top:.4rem;display:block;letter-spacing:.02em}
+/* === INTERACTIVE CHECKLIST (OSINT: qualifying leads) === */
+.checklist-section{background:var(--bg2);padding:5rem 0}
+.checklist{list-style:none;padding:0;max-width:500px;margin:0 auto}
+.checklist li{padding:.8rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1rem;cursor:pointer;transition:color .2s;user-select:none}
+.checklist li::before{content:'';width:1.2rem;height:1.2rem;border:2px solid var(--gold-dim);border-radius:3px;flex-shrink:0;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.checklist li.checked{color:var(--text-bright)}
+.checklist li.checked::before{background:var(--gold);border-color:var(--gold);content:'✓';color:var(--bg);font-size:.7rem;font-weight:700}
+.checklist-count{text-align:center;margin-top:2rem;font-size:1rem;color:var(--text-dim)}
+.checklist-count strong{color:var(--gold)}
+.checklist-cta{text-align:center;margin-top:1.5rem;opacity:0;transform:translateY(10px);transition:all .4s}
+.checklist-cta.visible{opacity:1;transform:translateY(0)}
 
-/* === METHOD === */
-.method-section{background:var(--bg2);padding:5rem 0}
-.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
-@media(max-width:640px){.method-grid{grid-template-columns:1fr}}
-.method-card{padding:2rem;border:1px solid var(--border);border-radius:6px;transition:border-color .25s}
-.method-card:hover{border-color:var(--gold-dim)}
-.method-card .method-num{font-family:var(--serif);font-size:2.5rem;font-weight:700;color:var(--gold);opacity:.25;display:block;margin-bottom:.8rem;line-height:1}
-.method-card h3{margin-bottom:.6rem}
-.method-card p{color:var(--text-dim);font-size:.9rem;line-height:1.65}
+/* === PROCESS — 3D TIMELINE === */
+.process-track{position:relative;padding-left:3rem}
+.process-track::before{content:'';position:absolute;left:1rem;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--gold-dim),transparent)}
+.process-node{position:relative;padding:1.5rem 0;padding-left:2rem;opacity:0;transform:translateX(-20px);transition:all .5s}
+.process-node.visible{opacity:1;transform:translateX(0)}
+.process-node::before{content:'';position:absolute;left:-2rem;top:1.8rem;width:.8rem;height:.8rem;border-radius:50%;border:2px solid var(--gold);background:var(--bg);transition:all .3s}
+.process-node:hover::before{background:var(--gold);box-shadow:0 0 15px rgba(201,169,110,.4)}
+.process-node h3{font-family:var(--sans);font-weight:500;font-size:1rem;color:var(--text-bright);margin-bottom:.3rem}
+.process-node p{color:var(--text-dim);font-size:.9rem;line-height:1.6}
+.process-node .process-detail{color:var(--gold);font-size:.8rem;margin-top:.3rem}
 
-/* === WHAT I WORK WITH === */
+/* === WORK LIST — 3D STAGGER === */
 .work-list{list-style:none;padding:0;counter-reset:work}
-.work-list li{padding:.9rem 0;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:1rem;counter-increment:work}
+.work-list li{padding:.9rem 0;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:1rem;counter-increment:work;opacity:0;transform:translateX(-15px);transition:all .4s}
+.work-list li.visible{opacity:1;transform:translateX(0)}
 .work-list li::before{content:counter(work,decimal-leading-zero);font-family:var(--serif);font-size:1.1rem;color:var(--gold);opacity:.5;flex-shrink:0;width:1.8rem}
 .work-list li span{color:var(--text);font-size:1rem}
 .work-list li .work-note{color:var(--text-dim);font-size:.85rem;margin-left:auto;flex-shrink:0}
 @media(max-width:480px){.work-list li{flex-wrap:wrap}.work-list li .work-note{margin-left:2.8rem;margin-top:.2rem;width:100%}}
 
-/* === PROCESS === */
-.process-steps{display:grid;gap:0;position:relative}
-.process-step{display:grid;grid-template-columns:3.5rem 1fr;gap:1.5rem;padding:2rem 0;border-bottom:1px solid var(--border);align-items:start}
-.process-step:last-child{border-bottom:none}
-.process-marker{display:flex;flex-direction:column;align-items:center}
-.process-dot{width:2.5rem;height:2.5rem;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;color:var(--gold);font-size:1rem;flex-shrink:0}
-.process-line{width:1px;flex:1;background:var(--border);margin-top:.5rem}
-.process-step:last-child .process-line{display:none}
-.process-content h3{font-family:var(--sans);font-weight:500;font-size:1rem;color:var(--text-bright);margin-bottom:.3rem}
-.process-content p{color:var(--text-dim);font-size:.9rem;line-height:1.6}
-.process-content .process-detail{color:var(--gold);font-size:.85rem;margin-top:.4rem}
-
-/* === PRICING === */
+/* === PRICING — 3D CARDS === */
 .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
 @media(max-width:640px){.pricing-grid{grid-template-columns:1fr}}
-.price-card{border:1px solid var(--border);border-radius:6px;padding:2.2rem;text-align:center;transition:border-color .25s;position:relative}
-.price-card:hover{border-color:var(--gold-dim)}
+.price-card{border:1px solid var(--border);border-radius:8px;padding:2.2rem;text-align:center;transition:all .3s;position:relative;transform-style:preserve-3d;background:var(--bg2)}
+.price-card:hover{transform:translateZ(15px);border-color:var(--border-gold);box-shadow:0 15px 50px rgba(0,0,0,.3)}
 .price-card.featured{border-color:var(--gold-dim);background:var(--gold-glow)}
 .price-card.featured::before{content:'Популярно';position:absolute;top:-.7rem;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:.7rem;font-weight:600;padding:.2rem .8rem;border-radius:2rem;letter-spacing:.04em;text-transform:uppercase}
 .price-card h3{font-family:var(--sans);font-weight:500;font-size:1rem;margin-bottom:.5rem}
@@ -127,6 +140,11 @@ section{padding:5rem 0}
 .price-card ul{list-style:none;padding:0;text-align:left;margin-bottom:1.5rem}
 .price-card ul li{padding:.35rem 0;font-size:.9rem;color:var(--text-dim);padding-left:1.2rem;position:relative}
 .price-card ul li::before{content:'·';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:1.2rem;line-height:1}
+
+/* === GUARANTEE === */
+.guarantee-box{border:1px solid var(--gold-dim);border-radius:8px;padding:2.5rem;background:var(--gold-glow);text-align:center}
+.guarantee-box h3{font-family:var(--serif);font-size:1.4rem;margin-bottom:.8rem;color:var(--text-bright)}
+.guarantee-box p{color:var(--text-dim);font-size:.95rem;max-width:500px;margin:0 auto;line-height:1.7}
 
 /* === ABOUT === */
 .about-section{background:var(--bg2);padding:5rem 0}
@@ -138,11 +156,6 @@ section{padding:5rem 0}
 .about-detail p{color:var(--text-dim);font-size:.9rem;line-height:1.7;margin-bottom:1rem}
 .about-detail p:last-child{margin-bottom:0}
 
-/* === GUARANTEE === */
-.guarantee-box{border:1px solid var(--gold-dim);border-radius:6px;padding:2.5rem;background:var(--gold-glow);text-align:center}
-.guarantee-box h3{font-family:var(--serif);font-size:1.4rem;margin-bottom:.8rem;color:var(--text-bright)}
-.guarantee-box p{color:var(--text-dim);font-size:.95rem;max-width:500px;margin:0 auto;line-height:1.7}
-
 /* === FAQ === */
 .faq-item{border-bottom:1px solid var(--border);padding:1.4rem 0}
 .faq-item:first-child{border-top:1px solid var(--border)}
@@ -150,35 +163,40 @@ section{padding:5rem 0}
 .faq-q::after{content:'+';color:var(--gold);font-size:1.3rem;flex-shrink:0;transition:transform .2s}
 .faq-a{color:var(--text-dim);font-size:.9rem;line-height:1.7;display:none;padding-top:.8rem;max-width:90%}
 .faq-item.open .faq-a{display:block}
-.faq-item.open .faq-q::after{content:'−';transform:rotate(0)}
+.faq-item.open .faq-q::after{content:'−'}
 
 /* === FINAL CTA === */
-.final-cta{padding:5rem 0;background:var(--bg2);text-align:center;position:relative}
-.final-cta::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);pointer-events:none;opacity:.5}
+.final-cta{padding:5rem 0;background:var(--bg2);text-align:center;position:relative;overflow:hidden}
+.final-cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);pointer-events:none}
 .final-cta-inner{position:relative;z-index:1}
 .final-cta h2{margin-bottom:1rem}
 .final-cta p{color:var(--text-dim);max-width:480px;margin:0 auto 2rem;font-size:1rem;line-height:1.7}
-.final-cta .btn{font-size:1.05rem;padding:.9rem 2.5rem}
 .telegram-link{display:inline-flex;align-items:center;gap:.5rem}
 
 /* FOOTER */
 footer{padding:2.5rem 0;text-align:center;border-top:1px solid var(--border)}
 footer p{color:var(--text-dim);font-size:.8rem;margin-bottom:.25rem}
-footer a{color:var(--gold-dim)}
 
-/* SCROLL ANIMATIONS */
-.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-@media(prefers-reduced-motion:reduce){.fade-in{opacity:1;transform:none;transition:none}}
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.reveal,.process-node,.work-list li{opacity:1;transform:none;transition:none}}
 
-/* WHATSAPP BUTTON (FLOATING) */
+/* FLOATING TG BUTTON */
 .fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;width:3.2rem;height:3.2rem;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.4);transition:transform .2s,box-shadow .2s}
 .fab:hover{transform:scale(1.08);box-shadow:0 6px 25px rgba(0,0,0,.5)}
 .fab svg{width:1.3rem;height:1.3rem;fill:var(--bg)}
 @media(max-width:480px){.fab{bottom:1rem;right:1rem;width:2.8rem;height:2.8rem}}
+
+/* === 3D DEPTH SCROLL EFFECTS === */
+.depth-section{transform:translateZ(0);transition:transform .1s ease-out}
 </style>
 </head>
 <body>
+<div class="perspective-root">
+
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
 
 <!-- NAV -->
 <nav>
@@ -188,119 +206,85 @@ footer a{color:var(--gold-dim)}
 </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
+<!-- HERO — 3D DEPTH LAYERS -->
+<section class="hero" id="top">
+  <div class="hero-layers">
+    <div class="hero-layer hero-layer--back">
+      <div class="hero-orb hero-orb--1"></div>
+      <div class="hero-orb hero-orb--2"></div>
+    </div>
+    <div class="hero-layer hero-layer--mid">
+      <div class="hero-grid"></div>
+      <div class="hero-orb hero-orb--3"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero-inner reveal">
+      <h1>Голова <em>не выключается</em>.<br>Ночью — тем более.</h1>
+      <p class="subtitle">Вы уже пробовали считать овец, дыхательные техники, валерьянку. Не работает. Потому что проблема не в том, что вы не расслабляетесь. <em>Проблема в том, что ваш мозг не знает, как это делается.</em></p>
+      <a href="#checklist" class="btn btn-filled btn-glow">Проверить себя — бесплатно</a>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- INTERACTIVE CHECKLIST (OSINT: qualifying leads) -->
+<section class="checklist-section" id="checklist">
 <div class="container">
-  <div class="hero-inner fade-in">
-    <h1>Голова <em>не выключается</em>.<br>Ночью — тем более.</h1>
-    <p class="subtitle">Вы уже пробовали считать овец, дыхательные техники, валерьянку. Не работает. Потому что проблема не в том, что вы не расслабляетесь. <em>Проблема в том, что ваш мозг не знает, как это делается.</em></p>
-    <a href="#contact" class="btn btn-filled">Бесплатная 15-минутная встреча</a>
+  <h2 class="reveal" style="text-align:center">Узнаёте себя?</h2>
+  <p class="subtitle reveal" style="text-align:center;margin-bottom:2rem">Отметьте то, что откликается. Не нужно отвечать на всё — одного пункта достаточно.</p>
+  <ul class="checklist reveal" id="selfCheck">
+    <li data-idx="0">Голова не выключается ночью, мысли крутятся по кругу</li>
+    <li data-idx="1">Тревога без причины — ощущение, что вот-вот случится что-то плохое</li>
+    <li data-idx="2">Не можете перестать есть / скроллить / смотреть — и это раздражает</li>
+    <li data-idx="3">Из детства тянутся обиды, которые не отпускают</li>
+    <li data-idx="4">Знаете, что делать — но не делаете. Появляются оправдания</li>
+    <li data-idx="5">Боитесь конкретного: полётов, высоты, замкнутого пространства</li>
+  </ul>
+  <div class="checklist-count" id="checkCount">Отметьте хотя бы один пункт</div>
+  <div class="checklist-cta" id="checkCTA">
+    <p style="color:var(--text-dim);margin-bottom:1rem;font-size:.95rem">Значит у вас есть запрос, с которым можно работать.</p>
+    <a href="#contact" class="btn btn-filled btn-sm">Записаться на бесплатную встречу</a>
   </div>
 </div>
 </section>
 
 <hr class="sep">
 
-<!-- SOCIAL PROOF -->
-<div class="proof-strip fade-in">
-  <div class="proof-item">
-    <span class="proof-num">10+</span>
-    <span class="proof-label">лет практики</span>
-  </div>
-  <div class="proof-item">
-    <span class="proof-num">1</span>
-    <span class="proof-label">сеанс — фобии, травмы</span>
-  </div>
-  <div class="proof-item">
-    <span class="proof-num">100%</span>
-    <span class="proof-label">онлайн, весь мир</span>
-  </div>
-</div>
-
-<hr class="sep">
-
-<!-- PAIN BLOCK -->
-<section class="pain-block">
-<div class="container">
-  <h2 class="fade-in">Узнаёте себя?</h2>
-  <p class="subtitle fade-in" style="margin-bottom:2rem">Это не «просто стресс». Это сигналы, которые нельзя игнорировать.</p>
-  <div class="pain-grid fade-in">
-    <div class="pain-item">
-      <div class="pain-icon">◯</div>
-      <div class="pain-text">
-        <h3>Голова не выключается</h3>
-        <p>Ночью. Днём. В выходные. Мысли крутятся, как белка в колесе. Просыпаетесь в 3 утра — и снова начинается. Если это происходит чаще 3 раз в неделю — это не «просто стресс».</p>
-      </div>
-    </div>
-    <div class="pain-item">
-      <div class="pain-icon">◯</div>
-      <div class="pain-text">
-        <h3>Боитесь, но не понимаете чего</h3>
-        <p>Тревога без объекта. Ощущение, что вот-вот случится что-то плохое — но что именно, непонятно. Тревога без причины — это сигнал. Причина есть, просто она не в сознании.</p>
-      </div>
-    </div>
-    <div class="pain-item">
-      <div class="pain-icon">◯</div>
-      <div class="pain-text">
-        <h3>Не можете перестать есть / смотреть / скроллить</h3>
-        <p>Не голод — а пустота, которую нужно чем-то заполнить. Телефон не выпускаете из рук. Это не слабость воли. Это механизм, который можно перезапустить.</p>
-      </div>
-    </div>
-    <div class="pain-item">
-      <div class="pain-icon">◯</div>
-      <div class="pain-text">
-        <h3>Из детства тянутся «хвосты»</h3>
-        <p>Обиды, которые не отпускают. Шаблоны поведения, которые вы повторяете, хотя знаете, что они вредят. Детские травмы не проходят «сами».</p>
-      </div>
-    </div>
-    <div class="pain-item">
-      <div class="pain-icon">◯</div>
-      <div class="pain-text">
-        <h3>Знаете, что делать — но не делаете</h3>
-        <p>Появляются оправдания, отговорки, откладывания. Это не лень. Это барьер. И его можно убрать.</p>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- METHOD -->
-<section class="method-section">
-<div class="container-wide">
-  <h2 class="fade-in" style="text-align:center">Метод работы</h2>
-  <p class="subtitle fade-in" style="text-align:center;max-width:540px;margin:0 auto 2.5rem">Не разговоры. Не анализ по кругу. Прямое воздействие на уровень, где проблема живёт.</p>
-  <div class="method-grid fade-in">
-    <div class="method-card">
-      <div class="method-num">01</div>
-      <h3>Классический гипноз</h3>
-      <p>Прямое обращение к подсознанию. Конкретные指令 для изменения привычек, реакций, шаблонов. Без «магии» — рабочий инструмент с доказанной эффективностью.</p>
-    </div>
-    <div class="method-card">
-      <div class="method-num">02</div>
-      <h3>Эриксоновский гипноз</h3>
-      <p>Мягкое погружение через метафоры и истории. Подходит тем, кто боится «потерять контроль». Вы в сознании. Вы всё слышите. Вы всё помните.</p>
-    </div>
-    <div class="method-card">
-      <div class="method-num">03</div>
-      <h3>НЛП-мастерство</h3>
-      <p>Работа с языком, визуальными и кинестетическими каналами. Перепрограммирование реакций на триггеры. Быстрый результат — часто за 1–3 сессии.</p>
-    </div>
-    <div class="method-card">
-      <div class="method-num">04</div>
-      <h3>Мессмеризм и тантрические техники</h3>
-      <p>Глубокие трансовые состояния. Работа с телом и энергией. Для тех, кому не хватает «обычной» терапии. Отдельная программа — 10–15 встреч.</p>
-    </div>
-  </div>
-</div>
-</section>
-
-<hr class="sep">
-
-<!-- WHAT I WORK WITH -->
+<!-- PROCESS — 3D TIMELINE -->
 <section>
 <div class="container">
-  <h2 class="fade-in">С чем работаю</h2>
-  <ul class="work-list fade-in">
+  <h2 class="reveal">Как проходит работа</h2>
+  <div class="process-track">
+    <div class="process-node">
+      <h3>Вы пишете</h3>
+      <p>Коротко о проблеме. Никаких анкет — живой разговор.</p>
+    </div>
+    <div class="process-node">
+      <h3>Бесплатная встреча — 15 минут</h3>
+      <p>Знакомство. Я задаю вопросы. Вы решаете, хотите ли работать. Если я вижу, что могу помочь — договариваемся. Если нет — честно скажу.</p>
+    </div>
+    <div class="process-node">
+      <h3>Основная сессия — 1 час 30 минут</h3>
+      <p>Работа с сознанием через трансовые состояния. Вы в сознании, всё слышите, всё помните. Контроль сохраняется.</p>
+      <div class="process-detail">Онлайн. Из любого места. Тихое помещение + стабильный интернет.</div>
+    </div>
+    <div class="process-node">
+      <h3>Результат и поддержка</h3>
+      <p>После сессии — аналитический разбор. Если проблема вернулась — бесплатный повторный анализ.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- WHAT I WORK WITH — 3D STAGGER -->
+<section>
+<div class="container">
+  <h2 class="reveal">С чем работаю</h2>
+  <ul class="work-list">
     <li><span>Тревога и навязчивые мысли</span><span class="work-note">1–3 сессии</span></li>
     <li><span>Бессонница — когда голова не выключается</span><span class="work-note">1–3 сессии</span></li>
     <li><span>Фобии — страх полётов, высоты, замкнутого пространства</span><span class="work-note">1–2 сессии</span></li>
@@ -315,52 +299,12 @@ footer a{color:var(--gold-dim)}
 
 <hr class="sep">
 
-<!-- PROCESS -->
-<section>
-<div class="container">
-  <h2 class="fade-in">Как проходит работа</h2>
-  <div class="process-steps fade-in">
-    <div class="process-step">
-      <div class="process-marker"><div class="process-dot">1</div><div class="process-line"></div></div>
-      <div class="process-content">
-        <h3>Вы пишете</h3>
-        <p>Коротко описываете проблему. Никаких анкет, никаких тестов. Живой разговор.</p>
-      </div>
-    </div>
-    <div class="process-step">
-      <div class="process-marker"><div class="process-dot">2</div><div class="process-line"></div></div>
-      <div class="process-content">
-        <h3>Бесплатная встреча — 15 минут</h3>
-        <p>Знакомство. Я задаю вопросы. Вы решаете, хотите ли работать. Если я вижу, что могу помочь — договариваемся. Если нет — честно скажу.</p>
-      </div>
-    </div>
-    <div class="process-step">
-      <div class="process-marker"><div class="process-dot">3</div><div class="process-line"></div></div>
-      <div class="process-content">
-        <h3>Основная сессия — 1 час 30 минут</h3>
-        <p>Работа с сознанием через трансовые состояния. Вы в сознании, всё слышите, всё помните. Контроль сохраняется.</p>
-        <div class="process-detail">Онлайн. Из любого места. Тихое помещение + стабильный интернет.</div>
-      </div>
-    </div>
-    <div class="process-step">
-      <div class="process-marker"><div class="process-dot">4</div><div class="process-line"></div></div>
-      <div class="process-content">
-        <h3>Результат и поддержка</h3>
-        <p>После сессии — аналитический разбор. Если проблема вернулась — бесплатный повторный анализ. У каждого свой лимит «сопротивления».</p>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<hr class="sep">
-
-<!-- PRICING -->
+<!-- PRICING — 3D CARDS -->
 <section>
 <div class="container-wide">
-  <h2 class="fade-in" style="text-align:center">Услуги</h2>
-  <p class="subtitle fade-in" style="text-align:center;margin-bottom:2.5rem">Прозрачно. Без скрытых платежей.</p>
-  <div class="pricing-grid fade-in">
+  <h2 class="reveal" style="text-align:center">Услуги</h2>
+  <p class="subtitle reveal" style="text-align:center;margin-bottom:2.5rem">Прозрачно. Без скрытых платежей.</p>
+  <div class="pricing-grid reveal">
     <div class="price-card featured">
       <h3>Трансовая сессия</h3>
       <div class="price">30 000 ₽<span> / сессия</span></div>
@@ -384,7 +328,7 @@ footer a{color:var(--gold-dim)}
       <a href="#contact" class="btn btn-sm">Записаться</a>
     </div>
   </div>
-  <div style="text-align:center;margin-top:1.5rem">
+  <div style="text-align:center;margin-top:1.5rem" class="reveal">
     <a href="#contact" class="dim" style="font-size:.9rem">Индивидуальная аудио-медитация — от 8 000 ₽ →</a>
   </div>
 </div>
@@ -393,7 +337,7 @@ footer a{color:var(--gold-dim)}
 <!-- GUARANTEE -->
 <section style="padding:3rem 0">
 <div class="container">
-  <div class="guarantee-box fade-in">
+  <div class="guarantee-box reveal">
     <h3>Гарантия результата</h3>
     <p>Если проблема вернулась — бесплатный аналитический сеанс разбора. Анализ: почему вернулось, что не учтено, сколько сессий не хватило. Я не обещаю чудо. Я обещаю работу — глубокую и честную.</p>
   </div>
@@ -405,8 +349,8 @@ footer a{color:var(--gold-dim)}
 <!-- ABOUT -->
 <section class="about-section">
 <div class="container-wide">
-  <h2 class="fade-in">Кто я</h2>
-  <div class="about-grid fade-in">
+  <h2 class="reveal">Кто я</h2>
+  <div class="about-grid reveal">
     <div class="about-text">
       <p>Более 10 лет практики. Начал с психологических консультаций и джйотиш. Во время длительных сессий заметил, что 2–4 часа пролетают как 5 минут — классический признак трансового состояния. Это был талант мессмеризма.</p>
       <p>Начал глубоко изучать тему. Обнаружил способность вводить людей в трансовые состояния — от осознанных до глубоких. Использую классические методы, дхьяну и тантрические техники.</p>
@@ -427,31 +371,31 @@ footer a{color:var(--gold-dim)}
 <!-- FAQ -->
 <section>
 <div class="container">
-  <h2 class="fade-in">Частые вопросы</h2>
-  <div class="fade-in">
+  <h2 class="reveal">Частые вопросы</h2>
+  <div class="reveal">
     <div class="faq-item">
       <div class="faq-q">Это не опасно?</div>
-      <div class="faq-a">Не медицинский гипноз. Работа с сознанием, не с телом. Вы в сознании, всё слышите, всё помните. Контроль сохраняется. Можете открыть глаза в любой момент.</div>
+      <div class="faq-a">Не медицинский гипноз. Работа с сознанием, не с телом. Вы в сознании, всё слышите, всё помните. Контроль сохраняется.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">Я буду помнить, что происходило?</div>
-      <div class="faq-a">Да. Транс — это не сон. Это фокус. Такой же, как когда вы читаете книгу и не слышите, как зовут на ужин. Вы помните всё.</div>
+      <div class="faq-a">Да. Транс — это не сон. Это фокус. Такой же, как когда вы читаете книгу и не слышите, как зовут на ужин.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">А вдруг не поможет?</div>
-      <div class="faq-a">Если проблема вернулась — бесплатный аналитический сеанс разбора. Анализ: почему вернулось, что не учтено, сколько сессий не хватило. У каждого свой лимит «сопротивления».</div>
+      <div class="faq-a">Если проблема вернулась — бесплатный аналитический сеанс разбора. У каждого свой лимит «сопротивления».</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">Это дорого. Почему не 5 000 ₽ как везде?</div>
-      <div class="faq-a">Потому что это не 50-минутная релаксация. Это 1:30 глубокой работы. Поверхностные сессии дают поверхностный результат. Если вы уже пробовали «обычную» терапию и не получили результата — проблема не в вас. Проблема в глубине работы.</div>
+      <div class="faq-a">Потому что это не 50-минутная релаксация. Это 1:30 глубокой работы. Если вы уже пробовали «обычную» терапию без результата — проблема не в вас. Проблема в глубине работы.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Работаете онлайн? Это так же эффективно?</div>
-      <div class="faq-a">Да, только онлайн. По всему миру. Трансовые состояния не требуют физического присутствия. Важно: тихое место, стабильный интернет.</div>
+      <div class="faq-q">Работаете онлайн?</div>
+      <div class="faq-a">Да, только онлайн. По всему миру. Трансовые состояния не требуют физического присутствия.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">Сколько сессий нужно?</div>
-      <div class="faq-a">Зависит от запроса. Фобии и детские травмы — часто за 1 сеанс. Тревога и бессонница — 1–3. Лишний вес, ускорение обучения — программа из 10–15 встреч. Точно скажу после бесплатной встречи.</div>
+      <div class="faq-a">Зависит от запроса. Фобии и травмы — за 1 сеанс. Тревога и бессонница — 1–3. Лишний вес — программа 10–15 встреч. Точно скажу после бесплатной встречи.</div>
     </div>
   </div>
 </div>
@@ -460,10 +404,10 @@ footer a{color:var(--gold-dim)}
 <!-- FINAL CTA -->
 <section class="final-cta" id="contact">
 <div class="container">
-  <div class="final-cta-inner fade-in">
+  <div class="final-cta-inner reveal">
     <h2>Отметили хотя бы 2 признака?</h2>
     <p>Значит у вас есть запрос, с которым можно работать. Бесплатная 15-минутная встреча — знакомство, выяснение, без обязательств.</p>
-    <a href="https://t.me/Ishvaradass" class="btn btn-filled telegram-link">
+    <a href="https://t.me/Ishvaradass" class="btn btn-filled btn-glow telegram-link">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       Написать в Telegram
     </a>
@@ -480,30 +424,87 @@ footer a{color:var(--gold-dim)}
 </div>
 </footer>
 
-<!-- FLOATING TELEGRAM BUTTON -->
+<!-- FLOATING TG BUTTON -->
 <a href="https://t.me/Ishvaradass" class="fab" aria-label="Написать в Telegram">
   <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
 </a>
 
-<!-- SCRIPTS -->
+</div><!-- /perspective-root -->
+
 <script>
-// FAQ accordion
-document.querySelectorAll('.faq-q').forEach(q=>{
-  q.addEventListener('click',()=>q.parentElement.classList.toggle('open'));
-});
+// === PARTICLES ===
+(function(){
+  const c=document.getElementById('particles');
+  for(let i=0;i<20;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    const s=Math.random()*3+1;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;opacity:${Math.random()*.3+.1}`;
+    c.appendChild(p);
+  }
+})();
 
-// Scroll animations
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+// === INTERACTIVE CHECKLIST ===
+(function(){
+  const items=document.querySelectorAll('.checklist li');
+  const countEl=document.getElementById('checkCount');
+  const ctaEl=document.getElementById('checkCTA');
+  let checked=new Set();
+  items.forEach(li=>{
+    li.addEventListener('click',()=>{
+      const idx=li.dataset.idx;
+      if(checked.has(idx)){checked.delete(idx);li.classList.remove('checked')}
+      else{checked.add(idx);li.classList.add('checked')}
+      const n=checked.size;
+      if(n===0){countEl.textContent='Отметьте хотя бы один пункт';ctaEl.classList.remove('visible')}
+      else if(n===1){countEl.innerHTML=`<strong>1</strong> пункт — этого достаточно`;ctaEl.classList.add('visible')}
+      else{countEl.innerHTML=`<strong>${n}</strong> из ${items.length} — это серьёзный сигнал`;ctaEl.classList.add('visible')}
+    });
+  });
+})();
+
+// === SCROLL REVEAL ===
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
 },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+document.querySelectorAll('.reveal,.process-node,.work-list li').forEach(el=>obs.observe(el));
 
-// Smooth scroll for anchor links
+// === FAQ ACCORDION ===
+document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>q.parentElement.classList.toggle('open'))});
+
+// === 3D PARALLAX ON SCROLL ===
+(function(){
+  const layers=document.querySelectorAll('.hero-layer');
+  const orbs=document.querySelectorAll('.hero-orb');
+  let ticking=false;
+  function onScroll(){
+    if(ticking)return;
+    ticking=true;
+    requestAnimationFrame(()=>{
+      const y=window.scrollY;
+      const vh=window.innerHeight;
+      const progress=Math.min(y/vh,1);
+      layers.forEach((l,i)=>{
+        const depth=[-300,-150,0][i]||0;
+        const move=progress*depth*0.3;
+        l.style.transform=`translateZ(${depth}px) scale(${1+Math.abs(depth)/1200}) translateY(${move}px)`;
+      });
+      orbs.forEach((o,i)=>{
+        const speed=[0.05,0.03,0.08][i]||0.05;
+        o.style.transform=`translateY(${y*speed}px)`;
+      });
+      ticking=false;
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+})();
+
+// === SMOOTH SCROLL ===
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     e.preventDefault();
-    const target=document.querySelector(a.getAttribute('href'));
-    if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
 </script>
