@@ -35,9 +35,9 @@ nav .logo span{color:var(--text-dim);font-weight:400;font-size:.8rem;margin-left
 nav a.cta-nav{font-size:.8rem;padding:.4rem 1.1rem;border:1px solid var(--gold-dim);border-radius:3px;color:var(--gold);transition:all .25s}
 nav a.cta-nav:hover{background:var(--gold);color:var(--bg)}
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:5rem}
-#three-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#three-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.35}
 .hero-inner{position:relative;z-index:5;text-align:center;max-width:620px;margin:0 auto}
-.hero-inner::before{content:'';position:absolute;top:-60px;left:-80px;right:-80px;bottom:-60px;background:radial-gradient(ellipse at center,rgba(8,8,16,.85) 0%,rgba(8,8,16,.5) 50%,transparent 100%);z-index:-1;pointer-events:none;border-radius:50%}
+.hero-inner::before{content:'';position:absolute;top:-40px;left:-60px;right:-60px;bottom:-40px;background:rgba(8,8,16,.8);z-index:-1;pointer-events:none;border-radius:12px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .hero h1{text-shadow:0 0 40px rgba(8,8,16,.9),0 2px 8px rgba(0,0,0,.5)}
 .hero .subtitle{text-shadow:0 0 30px rgba(8,8,16,.8)}
 .hero h1{margin-bottom:1.5rem}.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
@@ -329,7 +329,7 @@ class MindSphere {
   init() {
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    this.camera.position.z = 4;
+    this.camera.position.z = 4; this.camera.position.x = 1.2;
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
       alpha: true,
@@ -564,10 +564,10 @@ class MindSphere {
     this.aura.material.uniforms.uTime.value = this.time;
 
     // Gentle rotation
-    this.sphereParticles.rotation.y = this.time * 0.05 + this.mouse.x * 0.3;
+    this.sphereParticles.position.x = 1.5; this.sphereParticles.rotation.y = this.time * 0.05 + this.mouse.x * 0.3;
     this.sphereParticles.rotation.x = this.mouse.y * 0.2;
-    this.neuralLines.rotation.copy(this.sphereParticles.rotation);
-    this.aura.rotation.copy(this.sphereParticles.rotation);
+    this.neuralLines.position.x = 1.5; this.neuralLines.rotation.copy(this.sphereParticles.rotation);
+    this.aura.position.x = 1.5; this.aura.rotation.copy(this.sphereParticles.rotation);
 
     // Camera responds to scroll
     this.camera.position.z = 4 + this.scrollY * 1.5;
