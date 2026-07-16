@@ -129,8 +129,64 @@ nav a.cta-nav:hover{background:var(--gold);color:var(--bg)}
 .checklist-cta.visible{max-height:200px;opacity:1}
 
 /* =============================================
-   3D DEPTH CARDS
+   3D PROGRAMMATIC MODELS
    ============================================= */
+
+/* TORUS — ring of segments, 3D depth */
+.torus{position:absolute;top:12%;right:8%;width:180px;height:180px;transform-style:preserve-3d;transform:translateZ(-250px) rotateX(75deg);animation:torus-spin 25s linear infinite;opacity:.18}
+.torus-seg{position:absolute;width:100%;height:100%;border:2px solid var(--gold);border-radius:50%;transform-origin:center;box-sizing:border-box}
+@keyframes torus-spin{0%{transform:translateZ(-250px) rotateX(75deg) rotateZ(0)}100%{transform:translateZ(-250px) rotateX(75deg) rotateZ(360deg)}}
+
+/* OCTAHEDRON — 8 triangular faces */
+.octahedron{position:absolute;bottom:25%;left:12%;width:60px;height:60px;transform-style:preserve-3d;transform:translateZ(-180px);animation:octa-spin 18s ease-in-out infinite;opacity:.14}
+.octa-face{position:absolute;width:0;height:0;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:52px solid transparent;transform-origin:center}
+.octa-face::after{content:'';position:absolute;left:-30px;top:0;width:0;height:0;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:52px solid rgba(201,169,110,.15)}
+.octa-face--f{transform:translateZ(30px) rotateX(0deg)}
+.octa-face--b{transform:translateZ(-30px) rotateY(180deg)}
+.octa-face--l{transform:rotateY(-90deg) translateZ(30px)}
+.octa-face--r{transform:rotateY(90deg) translateZ(30px)}
+.octa-face--t{transform:rotateX(90deg) translateZ(30px)}
+.octa-face--bt{transform:rotateX(-90deg) translateZ(30px)}
+@keyframes octa-spin{0%{transform:translateZ(-180px) rotateX(0) rotateY(0)}50%{transform:translateZ(-180px) rotateX(180deg) rotateY(90deg)}100%{transform:translateZ(-180px) rotateX(360deg) rotateY(180deg)}}
+
+/* CONCENTRIC RINGS — depth layers */
+.rings{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transform-style:preserve-3d;pointer-events:none;opacity:.1}
+.ring{position:absolute;border:1.5px solid var(--gold);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}
+.ring--1{width:300px;height:300px;transform:translate(-50%,-50%) translateZ(-350px) rotateX(60deg);animation:ring-pulse-1 8s ease-in-out infinite}
+.ring--2{width:450px;height:450px;transform:translate(-50%,-50%) translateZ(-280px) rotateX(55deg);animation:ring-pulse-2 8s ease-in-out infinite 1s}
+.ring--3{width:600px;height:600px;transform:translate(-50%,-50%) translateZ(-210px) rotateX(50deg);animation:ring-pulse-3 8s ease-in-out infinite 2s}
+@keyframes ring-pulse-1{0%,100%{opacity:.3;transform:translate(-50%,-50%) translateZ(-350px) rotateX(60deg) scale(1)}50%{opacity:.7;transform:translate(-50%,-50%) translateZ(-350px) rotateX(60deg) scale(1.06)}}
+@keyframes ring-pulse-2{0%,100%{opacity:.3;transform:translate(-50%,-50%) translateZ(-280px) rotateX(55deg) scale(1)}50%{opacity:.7;transform:translate(-50%,-50%) translateZ(-280px) rotateX(55deg) scale(1.06)}}
+@keyframes ring-pulse-3{0%,100%{opacity:.3;transform:translate(-50%,-50%) translateZ(-210px) rotateX(50deg) scale(1)}50%{opacity:.7;transform:translate(-50%,-50%) translateZ(-210px) rotateX(50deg) scale(1.06)}}
+
+/* SPHERE — layered circles at different Z */
+.sphere{position:absolute;top:40%;right:20%;width:120px;height:120px;transform-style:preserve-3d;transform:translateZ(-150px);animation:sphere-rotate 20s linear infinite;opacity:.1}
+.sphere-ring{position:absolute;border:1px solid var(--gold);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}
+.sphere-ring:nth-child(1){width:120px;height:120px;transform:translate(-50%,-50%) rotateY(0deg)}
+.sphere-ring:nth-child(2){width:120px;height:120px;transform:translate(-50%,-50%) rotateY(30deg)}
+.sphere-ring:nth-child(3){width:120px;height:120px;transform:translate(-50%,-50%) rotateY(60deg)}
+.sphere-ring:nth-child(4){width:120px;height:120px;transform:translate(-50%,-50%) rotateY(90deg)}
+.sphere-ring:nth-child(5){width:120px;height:120px;transform:translate(-50%,-50%) rotateX(30deg)}
+.sphere-ring:nth-child(6){width:120px;height:120px;transform:translate(-50%,-50%) rotateX(60deg)}
+@keyframes sphere-rotate{0%{transform:translateZ(-150px) rotateY(0) rotateX(15deg)}100%{transform:translateZ(-150px) rotateY(360deg) rotateX(15deg)}}
+
+/* DNA HELIX — double spiral for process section */
+.dna-helix{position:absolute;right:5%;top:10%;width:40px;height:300px;transform-style:preserve-3d;transform:translateZ(-100px);opacity:.08}
+.dna-node{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--gold);left:50%;transform:translateX(-50%)}
+@keyframes helix-rotate{0%{transform:translateZ(-100px) rotateY(0)}100%{transform:translateZ(-100px) rotateY(360deg)}}
+
+/* FLOATING CUBE — simple wireframe */
+.cube-wrap{position:absolute;top:65%;right:15%;width:50px;height:50px;transform-style:preserve-3d;transform:translateZ(-200px);animation:cube-spin 15s ease-in-out infinite;opacity:.12}
+.cube-face{position:absolute;width:50px;height:50px;border:1.5px solid var(--gold)}
+.cube-face--front{transform:translateZ(25px)}
+.cube-face--back{transform:translateZ(-25px)}
+.cube-face--left{transform:rotateY(-90deg) translateZ(25px)}
+.cube-face--right{transform:rotateY(90deg) translateZ(25px)}
+.cube-face--top{transform:rotateX(90deg) translateZ(25px)}
+.cube-face--bottom{transform:rotateX(-90deg) translateZ(25px)}
+@keyframes cube-spin{0%{transform:translateZ(-200px) rotateX(0) rotateY(0)}50%{transform:translateZ(-200px) rotateX(180deg) rotateY(90deg)}100%{transform:translateZ(-200px) rotateX(360deg) rotateY(180deg)}}
+
+@media(max-width:640px){.torus,.octahedron,.sphere,.cube-wrap,.dna-helix{display:none}.ring--3{display:none}}
 .depth-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2rem;
   transform:translateZ(0);transition:transform .4s cubic-bezier(.23,1,.32,1),box-shadow .4s,border-color .4s;
   transform-style:preserve-3d;will-change:transform}
@@ -272,6 +328,59 @@ footer p{color:var(--text-dim);font-size:.8rem;margin-bottom:.25rem}
   <div class="geo-shape geo-ring"></div>
   <div class="geo-shape geo-diamond"></div>
   <div class="geo-shape geo-line"></div>
+
+  <!-- 3D TORUS (ring of 12 segments) -->
+  <div class="torus">
+    <div class="torus-seg" style="transform:rotateY(0deg)"></div>
+    <div class="torus-seg" style="transform:rotateY(15deg)"></div>
+    <div class="torus-seg" style="transform:rotateY(30deg)"></div>
+    <div class="torus-seg" style="transform:rotateY(45deg)"></div>
+    <div class="torus-seg" style="transform:rotateY(60deg)"></div>
+    <div class="torus-seg" style="transform:rotateY(75deg)"></div>
+    <div class="torus-seg" style="transform:rotateY(90deg)"></div>
+    <div class="torus-seg" style="transform:rotateY(105deg)"></div>
+    <div class="torus-seg" style="transform:rotateY(120deg)"></div>
+    <div class="torus-seg" style="transform:rotateY(135deg)"></div>
+    <div class="torus-seg" style="transform:rotateY(150deg)"></div>
+    <div class="torus-seg" style="transform:rotateY(165deg)"></div>
+  </div>
+
+  <!-- 3D OCTAHEDRON -->
+  <div class="octahedron">
+    <div class="octa-face octa-face--f"></div>
+    <div class="octa-face octa-face--b"></div>
+    <div class="octa-face octa-face--l"></div>
+    <div class="octa-face octa-face--r"></div>
+    <div class="octa-face octa-face--t"></div>
+    <div class="octa-face octa-face--bt"></div>
+  </div>
+
+  <!-- 3D CONCENTRIC RINGS -->
+  <div class="rings">
+    <div class="ring ring--1"></div>
+    <div class="ring ring--2"></div>
+    <div class="ring ring--3"></div>
+  </div>
+
+  <!-- 3D SPHERE (6 meridian rings) -->
+  <div class="sphere">
+    <div class="sphere-ring"></div>
+    <div class="sphere-ring"></div>
+    <div class="sphere-ring"></div>
+    <div class="sphere-ring"></div>
+    <div class="sphere-ring"></div>
+    <div class="sphere-ring"></div>
+  </div>
+
+  <!-- 3D WIREFRAME CUBE -->
+  <div class="cube-wrap">
+    <div class="cube-face cube-face--front"></div>
+    <div class="cube-face cube-face--back"></div>
+    <div class="cube-face cube-face--left"></div>
+    <div class="cube-face cube-face--right"></div>
+    <div class="cube-face cube-face--top"></div>
+    <div class="cube-face cube-face--bottom"></div>
+  </div>
 </div>
 <div class="container">
   <div class="hero-inner reveal">
@@ -315,7 +424,22 @@ footer p{color:var(--text-dim);font-size:.8rem;margin-bottom:.25rem}
 <hr class="sep">
 
 <!-- PROCESS — 3D TRACK -->
-<section>
+<section style="position:relative;overflow:hidden">
+<!-- DNA HELIX accent -->
+<div class="dna-helix" style="position:absolute;right:8%;top:15%;height:280px;transform-style:preserve-3d;animation:helix-rotate 20s linear infinite">
+  <div class="dna-node" style="top:0%;left:30%"></div>
+  <div class="dna-node" style="top:8%;left:70%"></div>
+  <div class="dna-node" style="top:16%;left:30%"></div>
+  <div class="dna-node" style="top:24%;left:70%"></div>
+  <div class="dna-node" style="top:32%;left:30%"></div>
+  <div class="dna-node" style="top:40%;left:70%"></div>
+  <div class="dna-node" style="top:48%;left:30%"></div>
+  <div class="dna-node" style="top:56%;left:70%"></div>
+  <div class="dna-node" style="top:64%;left:30%"></div>
+  <div class="dna-node" style="top:72%;left:70%"></div>
+  <div class="dna-node" style="top:80%;left:30%"></div>
+  <div class="dna-node" style="top:88%;left:70%"></div>
+</div>
 <div class="container">
   <h2 class="reveal">Как проходит работа</h2>
   <div class="process-track">
@@ -401,7 +525,7 @@ footer p{color:var(--text-dim);font-size:.8rem;margin-bottom:.25rem}
     <div class="cost-item highlight">
       <div class="cost-label">Одна трансовая сессия</div>
       <div class="cost-value">30 000 ₽</div>
-      <div class="cost-note">С гарантией возврата</div>
+      <div class="cost-note">С бесплатным повторным разбором</div>
     </div>
   </div>
 
@@ -465,7 +589,7 @@ footer p{color:var(--text-dim);font-size:.8rem;margin-bottom:.25rem}
     </div>
     <div class="faq-item">
       <div class="faq-q">Это дорого. Почему не 5 000 ₽ как везде?</div>
-      <div class="faq-a">Потому что это не 50-минутная релаксация. Это 1:30 глубокой работы. Сравните: год «обычной» терапии — 150 000+ ₽ без гарантии. Одна трансовая сессия — 30 000 ₽ с гарантией. Вы уже тратите: на снотворное, на коучей, на потерённые выходные. Это стоит дороже. Если вы уже пробовали «обычную» терапию без результата — проблема не в вас. Проблема в глубине работы.</div>
+      <div class="faq-a">Потому что это не 50-минутная релаксация. Это 1:30 глубокой работы. Сравните: год «обычной» терапии — 150 000+ ₽ без гарантии. Одна трансовая сессия — 30 000 ₽ — с бесплатным повторным разбором. Вы уже тратите: на снотворное, на коучей, на потерённые выходные. Это стоит дороже. Если вы уже пробовали «обычную» терапию без результата — проблема не в вас. Проблема в глубине работы.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">Работаете онлайн?</div>
